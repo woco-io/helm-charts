@@ -29,4 +29,7 @@ jobs:
           git merge main --no-edit
 
       - name: Push changes to gh-pages
-        run: git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push https://$GITHUB_TOKEN@github.com/woco-io/helm-charts.git gh-pages
