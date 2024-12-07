@@ -131,7 +131,8 @@ This chart uses a values schema to enforce valid configuration. The schema can b
 You can validate your values by running:
 
 ```bash
-helm install --dry-run --debug k8s-iam-manager ./path-to-chart
+helm pull woco-io/k8s-iam-manager --version <chart-chosen-version> --untar
+helm lint k8s-iam-manager --version <chart-chosen-version> --namespace <your-namespace> --set app.name=my-app,app.image.tag=latest
 ```
 
 ## Conclusion
