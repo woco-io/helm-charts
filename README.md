@@ -1,3 +1,5 @@
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/k8s-iam-manager)](https://artifacthub.io/packages/search?repo=k8s-iam-manager)
+
 # WOCO-IO Helm Charts
 
 Welcome to the **WOCO-IO Helm Charts** repository! 🎉
