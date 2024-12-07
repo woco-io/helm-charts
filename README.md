@@ -4,7 +4,8 @@
 
 Welcome to the **WOCO-IO Helm Charts** repository! 🎉
 
-This repository hosts Helm charts for deploying WOCO-IO services to Kubernetes. These charts are designed to simplify deployment, configuration, and management of our services for developers and DevOps teams.
+This repository hosts Helm charts for deploying WOCO-IO services to Kubernetes.<br>
+These charts are designed to simplify deployment, configuration, and management of our services for developers and DevOps teams.
 
 ## Repository Structure
 
