@@ -59,7 +59,7 @@ helm delete my-k8s-iam-manager --namespace <your-namespace>
 The `k8s-iam-manager` chart can be customized by editing the `values.yaml` file or by passing custom values with the `--set` flag during installation.
 
 ```bash
-helm install k8s-iam-manager ./path-to-chart --set app.name=my-app,app.image.tag=latest
+helm install my-k8s-iam-manager woco-io/k8s-iam-manager --version <chart-chosen-version> --namespace <your-namespace> --set app.name=my-app,app.image.tag=latest
 ```
 
 For more details on configuration options, refer to the section below.
