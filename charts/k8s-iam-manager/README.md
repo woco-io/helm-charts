@@ -86,6 +86,27 @@ For more details on configuration options, refer to the section below.
 | `serviceAccountName`                | Name of the service account to be used by the pod.                                                                | `""`                    |
 | `gcpServiceAccount`                 | Google Cloud Service Account to be used for API calls against GCP.                                                 | Required                |
 
+---
+
+### Environment Variables
+
+The `k8s-iam-manager` service can be configured through environment variables. These environment variables override the corresponding values in the `application.yaml` configuration file. Below are the environment variables that can be set:
+
+| Environment Variable                            | Description                                                                                 | Default Value                |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------|
+| `APP_SERVER_PORT`                               | Port on which the service will run.                                                         | `5000`                       |
+| `APP_HEALTH_LIVE_INCLUDE_K8S_CLIENT`            | Include custom Kubernetes client liveness checks.                                            | `true`                       |
+| `APP_K8S_IAM_MANAGER_NS_LABEL`                  | Label used to filter Kubernetes namespaces for the service to operate in.                   | `k8s-iam-manager.woco.io/enabled=true` |
+| `APP_K8S_IAM_MANAGER_EVENT_TIMING_MINUS_HOURS`  | Adjust event timing (in hours) for the service.                                              | `0`                          |
+| `APP_K8S_IAM_MANAGER_SA_IAM_ANNOTATION`         | Annotation key used to identify the Kubernetes Service Accounts to bind. | `iam.gke.io/gcp-service-account` |
+| `APP_K8S_IAM_MANAGER_CLOUD_PROVIDER`            | The cloud provider (supports GCP).                                                          | `GCP`                        |
+| `APP_K8S_IAM_MANAGER_IAM_BINDING_ROLE`          | IAM role used when binding the Google Service Account to the Kubernetes Service Account.    | `iam.workloadIdentityUser`   |
+| `APP_GCP_PROJECT_ID`                            | Google Cloud Project ID to be used for the GSA binding.                                     | `placeholder-fake-value`     |
+| `APP_GCP_PROJECT_NUMBER`                        | Google Cloud Project Number.                                                                | `placeholder-fake-value`     |
+| `APP_K8S_IAM_MANAGER_IS_PRESERVE_IAM_BINDINGS`  | Whether to preserve IAM bindings.                                                           | `true`                       |
+| `APP_IS_USE_CACHE`                              | Whether to enable cache usage.                                                              | `true`                       |
+
+---
 
 ### Custom Values
 
