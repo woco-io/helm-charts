@@ -3,7 +3,25 @@ entries:
   k8s-iam-manager:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-12-07T19:08:25.4834116+02:00"
+    created: "2024-12-07T21:10:07.1631709+02:00"
+    description: A Helm chart for k8s-iam-manager which simplify the process of GSA<->KSA
+      binding
+    digest: 63a3e38a55846bd09faaf86ffd1e5aefbe21d5f7b0b114c95d2252660f02a1f2
+    home: https://github.com/woco-io
+    maintainers:
+    - email: yehoraz3@gmail.com
+      name: Yehoraz Levi
+      url: https://github.com/Yehoraz
+    name: k8s-iam-manager
+    sources:
+    - https://github.com/woco-io/k8s-iam-manager
+    type: application
+    urls:
+    - k8s-iam-manager-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-12-07T21:10:07.162652+02:00"
     description: A Helm chart for k8s-iam-manager which simplify the process of GSA<->KSA
       binding
     digest: eb455317ea98ae4281ee51e7f6417652df7cf61067c2658aa1f960c7bd5d9087
@@ -19,4 +37,4 @@ entries:
     urls:
     - k8s-iam-manager-1.0.0.tgz
     version: 1.0.0
-generated: "2024-12-07T19:08:25.4813374+02:00"
+generated: "2024-12-07T21:10:07.1621067+02:00"
