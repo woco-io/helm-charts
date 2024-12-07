@@ -9,7 +9,7 @@
 # when the hash of the last commit in the branch you set up changes. This does
 # NOT apply to ownership claim operations, which are processed immediately.
 #
-repositoryID: k8s-iam-manager
+repositoryID: 55688aca-1543-4986-9540-971348c6882f
 owners: # (optional, used to claim repository ownership)
   - name: wocoio
     email: weonlycodeonce@gmail.com
