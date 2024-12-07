@@ -58,7 +58,6 @@ For more details on configuration options, refer to the section below.
 
 ## Values Configuration
 
-
 ### Available Values
 
 | Key                                 | Description                                                                                                      | Default Value           |
@@ -69,7 +68,7 @@ For more details on configuration options, refer to the section below.
 | `app.image.tag`                     | Docker image tag.                                                                                                 | `1.0`                   |
 | `app.image.pullPolicy`              | Image pull policy.                                                                                                | `IfNotPresent`          |
 | `app.port`                          | Port for the service.                                                                                             | `5000`                  |
-| `app.env`                           | Environment variables for the service. See `env` section for more details.                                        | `{}`                    |
+| `app.env`                           | Environment variables for the service. See `Environment Variables` section for more details.                                        | `{}`                    |
 | `labels`                            | Labels for the resources created by this chart.                                                                   | `{"app": "k8s-iam-manager"}` |
 | `annotations`                       | Annotations for the resources created by this chart.                                                              | `{"app": "k8s-iam-manager"}` |
 | `strategy`                          | Deployment strategy. Configure rolling updates and other settings.                                                | `RollingUpdate`         |
