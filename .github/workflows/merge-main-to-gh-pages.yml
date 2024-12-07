@@ -30,6 +30,6 @@ jobs:
 
       - name: Push changes to gh-pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git push https://$GITHUB_TOKEN@github.com/woco-io/helm-charts.git gh-pages
