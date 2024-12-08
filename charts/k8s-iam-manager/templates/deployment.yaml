@@ -42,16 +42,28 @@ spec:
         - name: {{ .Values.app.name }}
           image: {{ .Values.app.image.name }}:{{ .Values.app.image.tag }}
           imagePullPolicy: {{ .Values.app.image.pullPolicy | default "IfNotPresent" }}
-          {{- if or .Values.app.env .Values.app.port }}
+          {{- if or .Values.app.env .Values.app.port .Values.gcpProjectId }}
           env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
           {{- if .Values.app.port }}
           - name: APP_SERVER_PORT
-            value: {{ .Values.app.port }}
+            value: {{ .Values.app.port | quote }}
+          {{- end }}
+          {{- if .Values.gcpProjectId }}
+          - name: APP_GCP_PROJECT_ID
+            value: {{ .Values.gcpProjectId | quote }}
           {{- end }}
           {{- if .Values.app.env }}
-          {{- range $k, $v :=  $.Values.app.env }}
-          - name: {{ $k }}
-            value: {{ $v | quote }}
+          {{- range $key, $val :=  $.Values.app.env }}
+          - name: {{ $key }}
+            value: {{ $val | quote }}
           {{- end }}
           {{- end }}
           {{- end }}

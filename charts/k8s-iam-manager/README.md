@@ -26,6 +26,40 @@ This Helm chart simplifies the process of binding Google Service Accounts (GSA) 
 
 - A Kubernetes cluster.
 - Helm 3.x installed.
+- Terraform (optional).
+
+### Setup Required Infrastructure
+
+this can be replaced with manual / gcloud commands as long as the GSA has the required permissions and is bound to the KSA.
+
+```terraform
+# Create a Google Service Account
+resource "google_service_account" "k8s_service_account" {
+  account_id   = "<your-service-account-id>" # Replace with your desired service account id
+  display_name = "Kubernetes Service Account for Binding"
+}
+
+# Assign the specified IAM roles to the Google Service Account
+resource "google_project_iam_member" "iam_bindings" {
+  for_each = toset([
+    "roles/iam.serviceAccount.get",
+    "roles/iam.serviceAccount.getIamPolicy",
+    "roles/iam.serviceAccount.list",
+    "roles/iam.serviceAccount.setIamPolicy"
+  ])
+
+  project = "<your-gcp-project-id>"  # Replace with your GCP project ID
+  role    = each.value
+  member  = "serviceAccount:${google_service_account.k8s_service_account.email}"
+}
+
+# Bind Google Service Account to Kubernetes Service Account 
+resource "google_service_account_iam_member" "bind_gsa_to_ksa" {
+  member             = "serviceAccount:<your-gcp-project-id>.svc.id.goog[<your-namespace>/<your-k8s-service-account>]" # Replace with your GCP project ID, namespace, ksa
+  role               = "roles/iam.workloadIdentityUser"
+  service_account_id = google_service_account.k8s_service_account.id
+}
+```
 
 ### Setup Repo Info
 
@@ -43,6 +77,7 @@ To install the `k8s-iam-manager` chart, use the following Helm command:
 
 ```bash
 kubectl create namespace <your-namespace>
+kubectl label namespace <your-namespace> k8s-iam-manager.woco.io/enabled=true --overwrite
 helm install my-k8s-iam-manager woco-io/k8s-iam-manager --version <chart-chosen-version> --namespace <your-namespace>
 ```
 
@@ -60,30 +95,32 @@ For more details on configuration options, refer to the section below.
 
 ### Available Values
 
-| Key                                 | Description                                                                                                      | Default Value           |
-|-------------------------------------|------------------------------------------------------------------------------------------------------------------|-------------------------|
-| `isAutomaticPermissions`            | Whether to automatically create service permissions (RBAC) and Kubernetes Service Account (KSA)                  | `true`                  |
-| `app.name`                          | Name of the application.                                                                                         | `k8s-iam-manager`       |
-| `app.image.name`                    | Docker image name for the service.                                                                                | `woco.io/k8s-iam-manager`|
-| `app.image.tag`                     | Docker image tag.                                                                                                 | `1.0`                   |
-| `app.image.pullPolicy`              | Image pull policy.                                                                                                | `IfNotPresent`          |
-| `app.port`                          | Port for the service.                                                                                             | `5000`                  |
-| `app.env`                           | Environment variables for the service. See `Environment Variables` section for more details.                                        | `{}`                    |
-| `labels`                            | Labels for the resources created by this chart.                                                                   | `{"app": "k8s-iam-manager"}` |
-| `annotations`                       | Annotations for the resources created by this chart.                                                              | `{"app": "k8s-iam-manager"}` |
-| `strategy`                          | Deployment strategy. Configure rolling updates and other settings.                                                | `RollingUpdate`         |
-| `strategy.maxSurge`                 | Maximum number of pods to be created above the desired number during a rolling update.                           | `25%`                   |
-| `strategy.maxUnavailable`           | Maximum number of pods that can be unavailable during a rolling update.                                           | `25%`                   |
-| `replicas`                          | Number of replicas for the service.                                                                                | `1`                     |
-| `nodeSelector`                      | Node selector for pod scheduling.                                                                                 | `{}`                    |
-| `affinity`                          | Affinity rules for pod scheduling.                                                                                | `{}`                    |
-| `tolerations`                       | Tolerations for pod scheduling.                                                                                   | `{}`                    |
-| `imagePullSecrets`                  | Secrets to use for pulling images from private registries.                                                        | `[]`                    |
-| `liveness`                          | Configurations for liveness probes. See `liveness` section for more details.                                        | `{}`                    |
-| `readiness`                         | Configurations for readiness probes. See `readiness` section for more details.                                     | `{}`                    |
-| `resources`                         | Resource requests and limits for the service. See `resources` section for more details.                           | `{}`                    |
-| `serviceAccountName`                | Name of the service account to be used by the pod.                                                                | `""`                    |
-| `gcpServiceAccount`                 | Google Cloud Service Account to be used for API calls against GCP.                                                 | Required                |
+| Key                            | Description                                                                                     | Default Value                |
+|--------------------------------|-------------------------------------------------------------------------------------------------|------------------------------|
+| `isAutomaticPermissions`       | Whether to automatically create service permissions (RBAC) and Kubernetes Service Account (KSA) | `true`                       |
+| `app.name`                     | Name of the application.                                                                        | `k8s-iam-manager`            |
+| `app.image.name`               | Docker image name for the service.                                                              | `woco.io/k8s-iam-manager`    |
+| `app.image.tag`                | Docker image tag.                                                                               | `1.0`                        |
+| `app.image.pullPolicy`         | Image pull policy.                                                                              | `IfNotPresent`               |
+| `app.port`                     | Port for the service.                                                                           | `5000`                       |
+| `app.env`                      | Environment variables for the service. See `Environment Variables` section for more details.    | `{}`                         |
+| `labels`                       | Labels for the resources created by this chart.                                                 | `{"app": "k8s-iam-manager"}` |
+| `annotations`                  | Annotations for the resources created by this chart.                                            | `{"app": "k8s-iam-manager"}` |
+| `strategy`                     | Deployment strategy. Configure rolling updates and other settings.                              | `RollingUpdate`              |
+| `strategy.maxSurge`            | Maximum number of pods to be created above the desired number during a rolling update.          | `25%`                        |
+| `strategy.maxUnavailable`      | Maximum number of pods that can be unavailable during a rolling update.                         | `25%`                        |
+| `replicas`                     | Number of replicas for the service.                                                             | `1`                          |
+| `nodeSelector`                 | Node selector for pod scheduling.                                                               | `{}`                         |
+| `affinity`                     | Affinity rules for pod scheduling.                                                              | `{}`                         |
+| `tolerations`                  | Tolerations for pod scheduling.                                                                 | `{}`                         |
+| `imagePullSecrets`             | Secrets to use for pulling images from private registries.                                      | `[]`                         |
+| `liveness`                     | Configurations for liveness probes. See `liveness` section for more details.                    | `{}`                         |
+| `readiness`                    | Configurations for readiness probes. See `readiness` section for more details.                  | `{}`                         |
+| `resources`                    | Resource requests and limits for the service. See `resources` section for more details.         | `{}`                         |
+| `serviceAccountName`           | Name of the service account to be used by the pod.                                              | `""`                         |
+| `gcpServiceAccount`            | Google Cloud Service Account to be used for API calls against GCP.                              | Required                     |
+| `gcpProjectId`                 | Google Cloud project id this application is deployed in.                                        | Required                     |
+| `createNamespace`              | Whether to create namespace for the service.                                                    | `false`                      |
 
 ---
 
@@ -91,18 +128,18 @@ For more details on configuration options, refer to the section below.
 
 The `k8s-iam-manager` service can be configured through environment variables. These environment variables override the corresponding values in the `application.yaml` configuration file. Below are the environment variables that can be set:
 
-| Environment Variable                            | Description                                                                                 | Default Value                |
-|-------------------------------------------------|---------------------------------------------------------------------------------------------|------------------------------|
-| `APP_SERVER_PORT`                               | Port on which the service will run.                                                         | `5000`                       |
-| `APP_HEALTH_LIVE_INCLUDE_K8S_CLIENT`            | Include custom Kubernetes client liveness checks.                                            | `true`                       |
-| `APP_K8S_IAM_MANAGER_NS_LABEL`                  | Label used to filter Kubernetes namespaces for the service to operate in.                   | `k8s-iam-manager.woco.io/enabled=true` |
-| `APP_K8S_IAM_MANAGER_EVENT_TIMING_MINUS_HOURS`  | Adjust event timing (in hours) for the service.                                              | `0`                          |
-| `APP_K8S_IAM_MANAGER_SA_IAM_ANNOTATION`         | Annotation key used to identify the Kubernetes Service Accounts to bind. | `iam.gke.io/gcp-service-account` |
-| `APP_K8S_IAM_MANAGER_CLOUD_PROVIDER`            | The cloud provider (supports GCP).                                                          | `GCP`                        |
-| `APP_K8S_IAM_MANAGER_IAM_BINDING_ROLE`          | IAM role used when binding the Google Service Account to the Kubernetes Service Account.    | `iam.workloadIdentityUser`   |
-| `APP_GCP_PROJECT_ID`                            | Google Cloud Project ID to be used for the GSA binding.                                     | `placeholder-fake-value`     |
-| `APP_K8S_IAM_MANAGER_IS_PRESERVE_IAM_BINDINGS`  | Whether to preserve IAM bindings.                                                           | `true`                       |
-| `APP_IS_USE_CACHE`                              | Whether to enable cache usage.                                                              | `true`                       |
+| Environment Variable                            | Description                                                                                             | Default Value                          |
+|-------------------------------------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------|
+| `APP_SERVER_PORT`                               | Port on which the service will run.                                                                     | `5000`                                 |
+| `APP_HEALTH_LIVE_INCLUDE_K8S_CLIENT`            | Include custom Kubernetes client liveness checks.                                                       | `true`                                 |
+| `APP_K8S_IAM_MANAGER_NS_LABEL`                  | Label used to filter Kubernetes namespaces for the service to operate in, use "all" for all namespaces. | `k8s-iam-manager.woco.io/enabled=true` |
+| `APP_K8S_IAM_MANAGER_EVENT_TIMING_MINUS_HOURS`  | Adjust event timing (in hours) for the service.                                                         | `0`                                    |
+| `APP_K8S_IAM_MANAGER_SA_IAM_ANNOTATION`         | Annotation key used to identify the Kubernetes Service Accounts to bind.                                | `iam.gke.io/gcp-service-account`       |
+| `APP_K8S_IAM_MANAGER_CLOUD_PROVIDER`            | The cloud provider (supports GCP).                                                                      | `GCP`                                  |
+| `APP_K8S_IAM_MANAGER_IAM_BINDING_ROLE`          | IAM role used when binding the Google Service Account to the Kubernetes Service Account.                | `iam.workloadIdentityUser`             |
+| `APP_GCP_PROJECT_ID`                            | Google Cloud Project ID to be used for the GSA binding.                                                 | `placeholder-fake-value`               |
+| `APP_K8S_IAM_MANAGER_IS_PRESERVE_IAM_BINDINGS`  | Whether to preserve IAM bindings.                                                                       | `true`                                 |
+| `APP_IS_USE_CACHE`                              | Whether to enable cache usage.                                                                          | `true`                                 |
 
 ---
 
