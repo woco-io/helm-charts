@@ -11,7 +11,8 @@ metadata:
   {{- end }}
   name: {{ .Values.app.name }}
 spec:
-  replicas: {{ .Values.replicas | default 1 }}
+#  replicas: {{ .Values.replicas | default 1 }} # does not support multiple replicas until leader implemented
+  replicas: 1
   {{- with .Values.selector }}
   selector:
   {{- toYaml . | nindent 4 }}
