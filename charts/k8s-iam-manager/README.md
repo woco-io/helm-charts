@@ -101,7 +101,6 @@ The `k8s-iam-manager` service can be configured through environment variables. T
 | `APP_K8S_IAM_MANAGER_CLOUD_PROVIDER`            | The cloud provider (supports GCP).                                                          | `GCP`                        |
 | `APP_K8S_IAM_MANAGER_IAM_BINDING_ROLE`          | IAM role used when binding the Google Service Account to the Kubernetes Service Account.    | `iam.workloadIdentityUser`   |
 | `APP_GCP_PROJECT_ID`                            | Google Cloud Project ID to be used for the GSA binding.                                     | `placeholder-fake-value`     |
-| `APP_GCP_PROJECT_NUMBER`                        | Google Cloud Project Number.                                                                | `placeholder-fake-value`     |
 | `APP_K8S_IAM_MANAGER_IS_PRESERVE_IAM_BINDINGS`  | Whether to preserve IAM bindings.                                                           | `true`                       |
 | `APP_IS_USE_CACHE`                              | Whether to enable cache usage.                                                              | `true`                       |
 
@@ -119,7 +118,7 @@ helm install my-k8s-iam-manager woco-io/k8s-iam-manager --version <chart-chosen-
 
 ## Notes
 
-- The service requires the `APP_GCP_PROJECT_ID` and `APP_GCP_PROJECT_NUMBER` to be set for GCP integration.
+- The service requires the `APP_GCP_PROJECT_ID` to be set for GCP integration.
 - Ensure your Kubernetes cluster is running on GKE to take full advantage of the GSA <-> KSA binding features.
 - You can customize resource requests and limits in the `values.yaml` file to suit your deployment needs.
 
