@@ -2,7 +2,7 @@ apiVersion: v2
 name: k8s-iam-manager
 description: A Helm chart for k8s-iam-manager which simplify the process of GSA<->KSA binding
 type: application
-version: 1.4.0
+version: 1.4.1
 appVersion: "1.4.0"
 home: https://github.com/woco-io
 sources:
