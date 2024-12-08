@@ -184,10 +184,19 @@
         "gcpServiceAccount": {
             "type": "string",
             "description": "Service GSA to use for API calls against GCP"
+        },
+        "gcpProjectId": {
+            "type": "string",
+            "description": "GCP project id where this service will be deployed"
+        },
+        "createNamespace": {
+            "type": "string",
+            "description": "Whether to create namespace for the service or not"
         }
     },
     "required": [
-        "gcpServiceAccount"
+        "gcpServiceAccount",
+        "gcpProjectId"
     ],
     "title": "Values",
     "type": "object"
