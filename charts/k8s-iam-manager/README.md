@@ -14,8 +14,8 @@ This Helm chart simplifies the process of binding Google Service Accounts (GSA) 
 ## Chart Details
 
 - **Chart Name**: `k8s-iam-manager`
-- **Version**: `1.0.0`
-- **Application Version**: `1.0.0`
+- **Version**: `1.4.0`
+- **Application Version**: `1.4.0`
 - **Home**: [woco-io](https://github.com/woco-io)
 - **Sources**: [GitHub Repository](https://github.com/woco-io/k8s-iam-manager)
 - **Maintainer**: Yehoraz Levi ([email](mailto:yehoraz3@gmail.com), [GitHub](https://github.com/Yehoraz))
