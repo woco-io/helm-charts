@@ -200,8 +200,4 @@ entries:
     urls:
     - k8s-iam-manager-1.0.0.tgz
     version: 1.0.0
-<<<<<<< HEAD
-generated: "2024-12-10T05:20:40.059462407Z"
-=======
 generated: "2024-12-10T07:24:06.0527278+02:00"
->>>>>>> 224f681a15098f7b1ec4c6964dd930e47218501c
