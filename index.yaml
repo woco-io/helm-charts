@@ -1,5 +1,24 @@
 apiVersion: v1
 entries:
+  cloud-iam-manager:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-12-10T05:20:40.059443321Z"
+    description: A Helm chart for cloud-iam-manager which simplify the process of
+      GSA<->KSA binding
+    digest: a9378ee23ea60fe09821dd06c2ab7b80c3ac43cfb399e152b55fff0f584a47ee
+    home: https://github.com/woco-io
+    maintainers:
+    - email: yehoraz3@gmail.com
+      name: Yehoraz Levi
+      url: https://github.com/Yehoraz
+    name: cloud-iam-manager
+    sources:
+    - https://github.com/woco-io/cloud-iam-manager
+    type: application
+    urls:
+    - https://github.com/woco-io/helm-charts/releases/download/cloud-iam-manager-1.0.0/cloud-iam-manager-1.0.0.tgz
+    version: 1.0.0
   k8s-iam-manager:
   - apiVersion: v2
     appVersion: 1.4.0
@@ -109,4 +128,4 @@ entries:
     urls:
     - k8s-iam-manager-1.0.0.tgz
     version: 1.0.0
-generated: "2024-12-08T21:36:21.043894581Z"
+generated: "2024-12-10T05:20:40.059462407Z"
