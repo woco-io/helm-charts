@@ -16,8 +16,8 @@ This Helm chart simplifies the process of binding Google Service Accounts (GSA) 
 ## Chart Details
 
 - **Chart Name**: `cloud-iam-manager`
-- **Version**: `1.5.0`
-- **Application Version**: `1.5.0`
+- **Version**: `1.6.0`
+- **Application Version**: `1.6.0`
 - **Home**: [woco-io](https://github.com/woco-io)
 - **Sources**: [GitHub Repository](https://github.com/woco-io/cloud-iam-manager)
 - **Maintainer**: Yehoraz Levi ([email](mailto:yehoraz3@gmail.com), [GitHub](https://github.com/Yehoraz))
