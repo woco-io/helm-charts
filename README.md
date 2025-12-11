@@ -68,22 +68,6 @@ We welcome contributions to improve our Helm charts!
 - Test your changes thoroughly.
 - Update documentation and examples if applicable.
 
-## Creating a Release
-
-Use the helper script to package one chart and update `index.yaml`:
-
-```bash
-scripts/release.sh <chart-name> [base-url]
-```
-
-Steps:
-- Ensure `helm` is installed and on your PATH.
-- Run the script from the repo root with the target chart name; optionally provide `base-url` (defaults to `https://woco-io.github.io/helm-charts`).
-- Commit the new `.tgz` artifacts and `index.yaml`, then push (e.g., to `gh-pages`).
-
-Notes:
-- The script will use `charts/<chart>/values.lint.yaml` (or `ci/values.lint.yaml`) if present to satisfy required schema fields during `helm lint`.
-
 ## Support
 
 For any issues, feel free to open a GitHub issue or contact the WOCO-IO team.
