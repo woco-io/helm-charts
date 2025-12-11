@@ -2,26 +2,8 @@ apiVersion: v1
 entries:
   cloud-iam-manager:
   - apiVersion: v2
-    appVersion: 1.0.0
-    created: "2025-12-11T15:26:55.53393+02:00"
-    description: A Helm chart for cloud-iam-manager which simplify the process of
-      GSA<->KSA binding
-    digest: e48bf097f47d2c1ff59c231ee1dfbebc4cba37678964d00333276d37794d6d79
-    home: https://github.com/woco-io
-    maintainers:
-    - email: yehoraz3@gmail.com
-      name: Yehoraz Levi
-      url: https://github.com/Yehoraz
-    name: cloud-iam-manager
-    sources:
-    - https://github.com/woco-io/cloud-iam-manager
-    type: application
-    urls:
-    - https://woco-io.github.io/helm-charts/cloud-iam-manager-1.6.1.tgz
-    version: 1.6.1
-  - apiVersion: v2
     appVersion: 1.6.0
-    created: "2025-12-11T15:26:55.533774+02:00"
+    created: "2025-06-24T15:11:56.5010947+03:00"
     description: A Helm chart for cloud-iam-manager which simplify the process of
       GSA<->KSA binding
     digest: 57e448109917d6c0498329e0e95b889ce8ce4c1b84f289d8985fa5cb3bf0da50
@@ -35,11 +17,11 @@ entries:
     - https://github.com/woco-io/cloud-iam-manager
     type: application
     urls:
-    - https://woco-io.github.io/helm-charts/cloud-iam-manager-1.6.0.tgz
+    - cloud-iam-manager-1.6.0.tgz
     version: 1.6.0
   - apiVersion: v2
     appVersion: 1.5.0
-    created: "2025-12-11T15:26:55.533598+02:00"
+    created: "2025-06-24T15:11:56.5005756+03:00"
     description: A Helm chart for cloud-iam-manager which simplify the process of
       GSA<->KSA binding
     digest: dcb9a5043ec6fc18a2ce89aa4ad64697934b134a8871e6b85fd9a2224205c11c
@@ -53,11 +35,11 @@ entries:
     - https://github.com/woco-io/cloud-iam-manager
     type: application
     urls:
-    - https://woco-io.github.io/helm-charts/cloud-iam-manager-1.5.0.tgz
+    - cloud-iam-manager-1.5.0.tgz
     version: 1.5.0
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-12-11T15:26:55.53343+02:00"
+    created: "2025-06-24T15:11:56.5000563+03:00"
     description: A Helm chart for cloud-iam-manager which simplify the process of
       GSA<->KSA binding
     digest: 77ba69db38d1be17567e67e5dd4c078bcd49ee96d9b1de500b7945356e621c28
@@ -71,11 +53,11 @@ entries:
     - https://github.com/woco-io/cloud-iam-manager
     type: application
     urls:
-    - https://woco-io.github.io/helm-charts/cloud-iam-manager-1.1.0.tgz
+    - cloud-iam-manager-1.1.0.tgz
     version: 1.1.0
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-12-11T15:26:55.533253+02:00"
+    created: "2025-06-24T15:11:56.4995358+03:00"
     description: A Helm chart for cloud-iam-manager which simplify the process of
       GSA<->KSA binding
     digest: b65814dae1c14b98298f2c993b21a8893006f913a8a1381f08afe52aeb60ffd6
@@ -89,12 +71,12 @@ entries:
     - https://github.com/woco-io/cloud-iam-manager
     type: application
     urls:
-    - https://woco-io.github.io/helm-charts/cloud-iam-manager-1.0.0.tgz
+    - cloud-iam-manager-1.0.0.tgz
     version: 1.0.0
   k8s-iam-manager:
   - apiVersion: v2
     appVersion: 1.4.0
-    created: "2025-12-11T15:26:55.534237+02:00"
+    created: "2025-06-24T15:11:56.5026487+03:00"
     description: A Helm chart for k8s-iam-manager which simplify the process of GSA<->KSA
       binding
     digest: 072fb77359163dd883264c4bd49eba99dab9dd77382c85a6de6df9c13fe6b256
@@ -108,11 +90,11 @@ entries:
     - https://github.com/woco-io/k8s-iam-manager
     type: application
     urls:
-    - https://woco-io.github.io/helm-charts/k8s-iam-manager-1.4.1.tgz
+    - k8s-iam-manager-1.4.1.tgz
     version: 1.4.1
   - apiVersion: v2
     appVersion: 1.4.0
-    created: "2025-12-11T15:26:55.534084+02:00"
+    created: "2025-06-24T15:11:56.5021303+03:00"
     description: A Helm chart for k8s-iam-manager which simplify the process of GSA<->KSA
       binding
     digest: e763acb07ecc0fde25b2a91c9f982b73bc155add84ac89f0b51bfc2c3f0b02d5
@@ -126,6 +108,6 @@ entries:
     - https://github.com/woco-io/k8s-iam-manager
     type: application
     urls:
-    - https://woco-io.github.io/helm-charts/k8s-iam-manager-1.4.0.tgz
+    - k8s-iam-manager-1.4.0.tgz
     version: 1.4.0
-generated: "2025-12-11T15:26:55.533013+02:00"
+generated: "2025-06-24T15:11:56.4989779+03:00"

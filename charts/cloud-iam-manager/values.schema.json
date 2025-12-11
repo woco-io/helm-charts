@@ -154,7 +154,7 @@
             "description": "Determines which nodes a pod can be scheduled on based on node labels"
         },
         "tolerations": {
-            "type": "array",
+            "type": "object",
             "description": "Pods will be scheduled on nodes with matching taints"
         },
         "securityContext": {
